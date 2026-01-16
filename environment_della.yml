@@ -1,0 +1,53 @@
+# GNEprop environment for Princeton Della cluster
+#
+# Before creating this environment, load modules:
+#   module purge
+#   module load anaconda3/2024.2
+#   module load cudatoolkit/12.6
+#
+# Then create:
+#   conda env create -f environment_della.yml
+#
+name: gneprop
+channels:
+  - pytorch
+  - nvidia
+  - pyg
+  - dglteam/label/cu121
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pytorch=2.0.1
+  - pytorch-cuda=12.1
+  - h5py
+  - pyg=2.4.0
+  - pandas
+  - nb_conda_kernels
+  - jupyterlab
+  - pip
+  - pip:
+    - rdkit
+    - dgllife==0.3.2
+    - dgl==2.0.0+cu121 -f https://data.dgl.ai/wheels/cu121/repo.html
+    - torchdata==0.7.1
+    - pydantic==1.10.15
+    - torchsampler==0.1.2
+    - torchvision==0.17.1
+    - torcheval==0.0.7
+    - pytorch-lightning==1.9.5
+    - lightning-bolts==0.7.0
+    - ray==2.7.0
+    - ax-platform==0.3.7
+    - async-timeout==4.0.3
+    - captum==0.7.0
+    - wandb
+    - matplotlib
+    - omegaconf==2.3.0
+    - git+https://github.com/bp-kelley/descriptastorus
+    - ipykernel
+    - umap-learn
+    - seaborn
+    - pyarrow
+    - Cython
+    - scikit-learn
