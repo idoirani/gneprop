@@ -13,7 +13,7 @@ channels:
   - pytorch
   - nvidia
   - pyg
-  - dglteam/label/cu121
+  - dglteam
   - conda-forge
   - nodefaults
 dependencies:
@@ -22,7 +22,7 @@ dependencies:
   - pytorch-cuda=12.1
   - h5py
   - pyg=2.4.0
-  - dgl=2.0.0=*cu121*
+  - dgl==2.0.0.cu121
   - pandas
   - nb_conda_kernels
   - jupyterlab
