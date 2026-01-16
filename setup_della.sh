@@ -37,6 +37,12 @@ echo ""
 echo "Creating conda environment (this may take 10-15 minutes)..."
 conda env create -f environment_della.yml
 
+# Install DGL separately (conda package has issues)
+echo ""
+echo "Installing DGL via pip..."
+conda activate gneprop
+pip install dgl -f https://data.dgl.ai/wheels/torch-2.0/cu121/repo.html
+
 echo ""
 echo "=== Setup Complete ==="
 echo ""
