@@ -12,7 +12,7 @@ echo "=== GNEprop Della Setup ==="
 # Load required modules
 echo "Loading modules..."
 module purge
-module load anaconda3/2024.2
+module load anaconda3/2025.12
 module load cudatoolkit/12.6
 
 echo "Loaded modules:"
