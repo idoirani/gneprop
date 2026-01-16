@@ -16,7 +16,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python=3.11
+  - python=3.10
   - pytorch=2.0.1
   - pytorch-cuda=12.1
   - h5py
@@ -26,8 +26,10 @@ dependencies:
   - jupyterlab
   - pip
   - pip:
+    - "numpy<2"
     - rdkit
     - dgllife==0.3.2
+    - learn2learn
     - torchdata==0.7.1
     - pydantic==1.10.15
     - torchsampler==0.1.2
