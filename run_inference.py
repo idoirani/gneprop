@@ -15,7 +15,7 @@ Usage:
     python run_inference.py \
         --data_path /scratch/gpfs/GITAI/ido/GNEprop/Data/New_sets_princeton_all_largest.csv \
         --checkpoint_dir /scratch/gpfs/GITAI/ido/GNEprop/checkpoints/20250811-202022 \
-        --output /scratch/gpfs/GITAI/ido/GNEprop/predictions/predictions_largest.csv
+        --save_path /scratch/gpfs/GITAI/ido/GNEprop/predictions/predictions_largest.csv
 
 Arguments:
     --data_path: Path to CSV file with SMILES column
@@ -148,7 +148,7 @@ def main():
                         help='Path to input CSV file with SMILES')
     parser.add_argument('--checkpoint_dir', type=str, required=True,
                         help='Directory containing checkpoint files')
-    parser.add_argument('--output', type=str, default='predictions.csv',
+    parser.add_argument('--save_path', type=str, default='predictions.csv',
                         help='Output CSV file path')
     parser.add_argument('--smiles_col', type=str, default='SMILES_FROM_INCHI',
                         help='Name of SMILES column in input CSV')
@@ -159,12 +159,12 @@ def main():
     parser.add_argument('--gpus', type=int, default=1,
                         help='Number of GPUs to use')
 
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()  # Ignore extra args from gneprop_pyg
 
     run_inference(
         data_path=args.data_path,
         checkpoint_dir=args.checkpoint_dir,
-        output_path=args.output,
+        output_path=args.save_path,
         smiles_col=args.smiles_col,
         target_col=args.target_col,
         batch_size=args.batch_size,

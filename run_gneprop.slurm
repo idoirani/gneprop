@@ -29,7 +29,7 @@ mkdir -p $GNEPROP_DATA/predictions
 python run_inference.py \
     --data_path $GNEPROP_DATA/Data/New_sets_princeton_all_largest.csv \
     --checkpoint_dir $GNEPROP_DATA/checkpoints/20250811-202022 \
-    --output $GNEPROP_DATA/predictions/predictions_largest.csv \
+    --save_path $GNEPROP_DATA/predictions/predictions_largest.csv \
     --smiles_col SMILES_FROM_INCHI \
     --target_col binarized \
     --gpus 1
