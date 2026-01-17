@@ -29,7 +29,6 @@ mkdir -p $GNEPROP_DATA/finetune_logs
 python gneprop_pyg.py \
     --dataset_path $GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv \
     --supervised_pretrain_path $GNEPROP_DATA/checkpoints/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt \
-    --smiles_name SMILES \
     --target_name active \
     --split_type scaffold \
     --use_mol_features \
