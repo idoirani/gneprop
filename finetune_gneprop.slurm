@@ -31,7 +31,8 @@ python gneprop_pyg.py \
     --supervised_pretrain_path $GNEPROP_DATA/checkpoints/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt \
     --smiles_name SMILES \
     --target_name active \
-    --split_type scaffold_stratified \
+    --split_type scaffold \
+    --use_mol_features \
     --auto_loss_weight \
     --balanced_batch_training \
     --freeze_ab_embeddings \
