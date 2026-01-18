@@ -2,7 +2,7 @@
 #SBATCH --job-name=gneprop_finetune
 #SBATCH --output=finetune_%j.out
 #SBATCH --error=finetune_%j.err
-#SBATCH --time=06:00:00
+#SBATCH --time=10:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=8
@@ -76,6 +76,7 @@ python gneprop_pyg.py \
     --metric val_ap \
     --use_early_stopping \
     --gpus 1 \
+    --num_folds 8 \
     --log_directory $GNEPROP_DATA/finetune_logs
 
 echo "Fine-tuning completed at $(date)"
