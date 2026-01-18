@@ -27,11 +27,11 @@ mkdir -p $GNEPROP_DATA/predictions
 
 # Run inference - modify data_path as needed
 python run_inference.py \
-    --data_path $GNEPROP_DATA/Data/New_sets_princeton_all_largest.csv \
+    --data_path $GNEPROP_DATA/Data/genentech_virtual_screening_hits.csv \
     --checkpoint_dir $GNEPROP_DATA/checkpoints/20250811-202022 \
-    --save_path $GNEPROP_DATA/predictions/predictions_largest.csv \
-    --smiles_col SMILES_FROM_INCHI \
-    --target_col binarized \
+    --save_path $GNEPROP_DATA/predictions/predictions_genentech_virtual_screening_hits.csv \
+    --smiles_col SMILES \
+    --target_col active \
     --gpus 1
 
 echo "Job completed at $(date)"

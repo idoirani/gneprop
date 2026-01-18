@@ -9,7 +9,7 @@
 
 # Paths
 export GNEPROP_CODE=/home/ii3409/GNEprop/gneprop
-export GNEPROP_DATA=/scratch/gpfs/GITAI/ido/GNEprop
+export GNEPROP_DATA=/scratch/gpfs/GITAI/ido/GNEprop/Data
 
 # Load modules
 module purge
