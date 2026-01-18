@@ -33,7 +33,6 @@ python gneprop_pyg.py \
     --split_type scaffold \
     --use_mol_features \
     --auto_loss_weight \
-    --balanced_batch_training \
     --freeze_ab_embeddings \
     --mp_to_freeze 1 \
     --lr 1e-4 \
