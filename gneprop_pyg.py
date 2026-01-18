@@ -1108,7 +1108,7 @@ def load_supervised_pretrained_model_freeze_params(args, model):
     assert os.path.isfile(args.supervised_pretrain_path)
 
     model_pretrained = GNEprop.load_from_checkpoint(args.supervised_pretrain_path)
-    model.load_state_dict(model_pretrained.state_dict())
+    model.load_state_dict(model_pretrained.state_dict(), strict=False)
     model.freeze_first_layers(freeze_ab_embeddings=args.freeze_ab_embeddings, mp_to_freeze=args.mp_to_freeze)
     if args.freeze_batchnorm:
         model.freeze_params(('bn',), only_convs=True)
@@ -1120,7 +1120,7 @@ def load_supervised_pretrained_model_freeze_params_folds(args, model):
     assert args.supervised_pretrain_paths is not None
 
     model_pretrained = GNEprop.load_from_checkpoint(args.supervised_pretrain_paths[args.seed])
-    model.load_state_dict(model_pretrained.state_dict())
+    model.load_state_dict(model_pretrained.state_dict(), strict=False)
     model.freeze_first_layers(freeze_ab_embeddings=args.freeze_ab_embeddings, mp_to_freeze=args.mp_to_freeze)
     if args.freeze_batchnorm:
         model.freeze_params(('bn',), only_convs=True)
