@@ -29,7 +29,7 @@ mkdir -p $GNEPROP_DATA/finetune_logs
 # Verify all paths exist before running
 echo "=== Verifying paths ==="
 DATASET_PATH=$GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv
-CHECKPOINT_PATH=$GNEPROP_CHECK/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt
+CHECKPOINT_DIR=$GNEPROP_CHECK/20250811-202022
 
 errors=0
 
@@ -45,11 +45,13 @@ else
     echo "OK: Dataset found ($DATASET_PATH)"
 fi
 
-if [ ! -f "$CHECKPOINT_PATH" ]; then
-    echo "ERROR: Checkpoint not found: $CHECKPOINT_PATH"
+if [ ! -d "$CHECKPOINT_DIR" ]; then
+    echo "ERROR: Checkpoint directory not found: $CHECKPOINT_DIR"
     errors=$((errors + 1))
 else
-    echo "OK: Checkpoint found ($CHECKPOINT_PATH)"
+    # Count fold directories
+    NUM_FOLDS=$(ls -d $CHECKPOINT_DIR/*fold_* 2>/dev/null | wc -l)
+    echo "OK: Checkpoint directory found with $NUM_FOLDS folds ($CHECKPOINT_DIR)"
 fi
 
 if [ $errors -gt 0 ]; then
@@ -61,7 +63,7 @@ echo "=== All paths verified ==="
 # Fine-tune for higher recall
 python gneprop_pyg.py \
     --dataset_path $GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv \
-    --supervised_pretrain_path $GNEPROP_CHECK/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt \
+    --supervised_pretrain_path_folds $GNEPROP_CHECK/20250811-202022 \
     --target_name activity_int \
     --split_type scaffold \
     --num_readout_layers 1 \
