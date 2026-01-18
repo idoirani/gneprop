@@ -26,6 +26,38 @@ cd $GNEPROP_CODE
 # Create log directory
 mkdir -p $GNEPROP_DATA/finetune_logs
 
+# Verify all paths exist before running
+echo "=== Verifying paths ==="
+DATASET_PATH=$GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv
+CHECKPOINT_PATH=$GNEPROP_CHECK/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt
+
+errors=0
+
+if [ ! -d "$GNEPROP_CODE" ]; then
+    echo "ERROR: Code directory not found: $GNEPROP_CODE"
+    errors=$((errors + 1))
+fi
+
+if [ ! -f "$DATASET_PATH" ]; then
+    echo "ERROR: Dataset not found: $DATASET_PATH"
+    errors=$((errors + 1))
+else
+    echo "OK: Dataset found ($DATASET_PATH)"
+fi
+
+if [ ! -f "$CHECKPOINT_PATH" ]; then
+    echo "ERROR: Checkpoint not found: $CHECKPOINT_PATH"
+    errors=$((errors + 1))
+else
+    echo "OK: Checkpoint found ($CHECKPOINT_PATH)"
+fi
+
+if [ $errors -gt 0 ]; then
+    echo "=== $errors error(s) found. Exiting. ==="
+    exit 1
+fi
+echo "=== All paths verified ==="
+
 # Fine-tune for higher recall
 python gneprop_pyg.py \
     --dataset_path $GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv \
