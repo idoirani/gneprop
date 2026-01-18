@@ -10,6 +10,7 @@
 # Paths
 export GNEPROP_CODE=/home/ii3409/GNEprop/gneprop
 export GNEPROP_DATA=/scratch/gpfs/GITAI/ido/GNEprop/Data
+export GNEPROP_CHECK=/scratch/gpfs/GITAI/ido/GNEprop/checkpoints
 
 # Load modules
 module purge
@@ -28,7 +29,7 @@ mkdir -p $GNEPROP_DATA/finetune_logs
 # Fine-tune for higher recall
 python gneprop_pyg.py \
     --dataset_path $GNEPROP_DATA/training_all_known_ab_clusters_with_target.csv \
-    --supervised_pretrain_path $GNEPROP_DATA/checkpoints/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt \
+    --supervised_pretrain_path $GNEPROP_CHECK/20250811-202022/20250811-202022-fold_0/checkpoints/epoch=48-step=1845193.ckpt \
     --target_name activity_int \
     --split_type scaffold \
     --use_mol_features \
